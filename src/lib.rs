@@ -82,9 +82,9 @@ impl Universe {
         let endy = starty + height;
         let buf = &mut self.output_buffer;
         // Color model u32 LE (ARGB)  -> u8 BGRA
-        let blue: u8 = ((color  >> 16) & 0xff)  as u8; 
+        let red: u8 = ((color  >> 16) & 0xff)  as u8; 
         let green: u8  = ((color >> 8) & 0xff) as u8; 
-        let red: u8 = ((color >> 0) & 0xff) as u8; 
+        let blue: u8 = ((color >> 0) & 0xff) as u8; 
         let alpha: u8 = 0xff;
 
         for y in starty..endy {
@@ -92,9 +92,9 @@ impl Universe {
             for x  in startx..endx {
                 let pos :usize= (offset + (x * 4)) as usize;
 
-                buf[pos] = blue;
+                buf[pos] = red;
                 buf[pos + 1] = green;
-                buf[pos + 2] = red;
+                buf[pos + 2] = blue;
                 buf[pos + 3] = alpha;
             }
         }

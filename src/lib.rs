@@ -111,9 +111,9 @@ impl Universe {
             let offset = y * width * 4;
             for x  in 0..width {
                 let pos = (offset + (x * 4)) as usize;
-                let red = ibuf[pos + 2] as f64;
+                let blue = ibuf[pos + 2] as f64;
                 let green  = ibuf[pos + 1] as f64;
-                let blue = ibuf[pos] as f64;
+                let red = ibuf[pos] as f64;
 
                 let gray =  (wred * red + wgreen * green  + wblue * blue).round() as u8;
                 buf[pos] = gray;

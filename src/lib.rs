@@ -69,57 +69,10 @@ impl Universe {
         self.output_buffer.as_ptr()
     }
 
-    pub fn fillbox(&mut self,color: u32){
-        let height = self.height;
-        let width = self.width;
-        let buf = &mut self.output_buffer;
-        // Color model u32 LE (RGBA)  -> u8 BGRA
-        let blue: u8 = ((color  >> 16) & 0xff)  as u8; // R = 1.0
-        let green: u8  = ((color >> 8) & 0xff) as u8; // G = 1.0
-        let red: u8 = ((color >> 0) & 0xff) as u8; // B = 1.0
-        let alpha: u8 = 0xff;
-
-        log(&format!("{} {} {}",blue,green,red));
-
-        for y  in 0..height {
-            let offset = y * width * 4;
-            for x in 0..width {
-                let pos :usize = (offset + x * 4) as usize;
-                buf[pos] = blue;
-                buf[pos + 1] = green;
-                buf[pos + 2] = red;
-                buf[pos + 3] = alpha;
-            }
-        }
+    pub fn clear(&mut self,color: u32){
+        self.fillrect(0, 0, self.width, self.height, color);
     }
     
-    pub fn fillrandomrect(&mut self){
-        let height = self.height;
-        let width = self.width;
-        let buf = &mut self.output_buffer;
-
-        let startx:u32 = rand_u32(width);
-        let starty:u32 = rand_u32(height);
-        let endx:u32 = rand_u32(width-startx); 
-        let endy:u32 = rand_u32(height-starty);
-        let red:u8 = rand_u32(255) as u8;
-        let green:u8 = rand_u32(255) as u8;
-        let blue:u8 = rand_u32(255) as u8;
-        let alpha:u8 = rand_u32(255) as u8;
-
-        for y in starty..endy {
-            let offset = y * width * 4;
-            for x  in startx..endx {
-                let pos :usize= (offset + (x * 4)) as usize;
-
-                buf[pos] = blue;
-                buf[pos + 1] = green;
-                buf[pos + 2] = red;
-                buf[pos + 3] = alpha;
-            }
-        }
-    }
-
     pub fn fillrect(&mut self,startx :u32, starty :u32, width: u32, height: u32,color: u32){
         let endx = startx + width;
         let endy = starty + height;
@@ -142,10 +95,6 @@ impl Universe {
             }
         }
 
-    }
-
-    pub fn to_grayscale0(&mut self) {
-        self.to_grayscale(0);
     }
 
     pub fn to_grayscale(&mut self, t: usize) {

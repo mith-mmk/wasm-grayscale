@@ -46,7 +46,7 @@ function jsinit(wasm) {
     clearCanvas();
 
     function clearCanvas() {
-      universe.fillbox(0x0);
+      universe.clear(0x0);
       let imgData = new ImageData(buf, width, height);
       ctx.putImageData(imgData, 0, 0);
     }

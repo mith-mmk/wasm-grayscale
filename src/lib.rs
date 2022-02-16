@@ -28,9 +28,13 @@ pub struct Universe {
     output_buffer: Vec<u8>,
 }
 
-const GrayscaleWeights: [(f64,f64,f64);2] = [
+const GrayscaleWeights: [(f64,f64,f64);6] = [
     (0.299_f64, 0.587_f64, 0.114_f64),   //JPEG,BT.601
-    (0.2126_f64, 0.7152_f64, 0.0722_f64)  // BT.709
+    (0.2126_f64, 0.7152_f64, 0.0722_f64), // BT.709
+    (0.3333333_f64,0.3333334_f64,0.3333333_f64), // Avarage
+    (1.0_f64,0.0_f64,0.0_f64), // Red
+    (0.0_f64,1.0_f64,0.0_f64), // Green
+    (0.0_f64,0.0_f64,1.0_f64), // Blue
 ];
 
 #[wasm_bindgen]

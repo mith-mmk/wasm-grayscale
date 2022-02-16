@@ -116,9 +116,9 @@ impl Universe {
                 let red = ibuf[pos] as f64;
 
                 let gray =  (wred * red + wgreen * green  + wblue * blue).round() as u8;
-                buf[pos] = gray;
-                buf[pos + 1] = gray;
-                buf[pos + 2] = gray;
+                buf[pos] = gray;     // Red
+                buf[pos + 1] = gray; // Green
+                buf[pos + 2] = gray; // Blue
                 buf[pos + 3] = 0xff; // alpha
             }
         }

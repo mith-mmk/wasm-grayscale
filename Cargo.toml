@@ -3,6 +3,7 @@ name = "grayscale"
 version = "0.1.0"
 authors = ["mith-mmk <47620686+mith-mmk@users.noreply.github.com>"]
 edition = "2018"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
